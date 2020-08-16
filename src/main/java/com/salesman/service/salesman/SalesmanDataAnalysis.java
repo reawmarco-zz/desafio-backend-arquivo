@@ -1,4 +1,4 @@
-package com.salesman.service.salasman;
+package com.salesman.service.salesman;
 
 import com.salesman.model.Salesman;
 import com.salesman.service.IProcessLine;

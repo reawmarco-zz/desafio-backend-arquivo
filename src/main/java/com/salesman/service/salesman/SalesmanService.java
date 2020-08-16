@@ -1,4 +1,4 @@
-package com.salesman.service.salasman;
+package com.salesman.service.salesman;
 
 import com.salesman.model.Salesman;
 import org.springframework.stereotype.Service;
@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SalesmanService {
 
-    public final SalesmanData salesmanData;
-
-    public final SalesmanDataAnalysis salesmanDataAnalysis;
+    private final SalesmanData salesmanData;
+    private final SalesmanDataAnalysis salesmanDataAnalysis;
 
     public SalesmanService(SalesmanData salesmanData, SalesmanDataAnalysis salesmanDataAnalysis) {
         this.salesmanData = salesmanData;
@@ -17,12 +16,11 @@ public class SalesmanService {
 
     public Salesman processLine(String[] line) {
         Salesman salesman = (Salesman) salesmanDataAnalysis.processLine(line);
-        addSalesman(salesman);
-        return salesman;
+        return addSalesman(salesman);
     }
 
-    private void addSalesman(Salesman salesman) {
-        salesmanData.addSalesman(salesman);
+    private Salesman addSalesman(Salesman salesman) {
+        return salesmanData.addSalesman(salesman);
     }
 
     public int getTotalSalesmen() {

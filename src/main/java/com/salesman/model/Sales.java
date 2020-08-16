@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sales  implements Serializable {
+public class Sales implements Serializable {
 
     private static final long serialVersionUID = 8447199076814821763L;
 

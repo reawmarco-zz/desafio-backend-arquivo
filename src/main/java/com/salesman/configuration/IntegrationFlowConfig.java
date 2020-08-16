@@ -4,8 +4,8 @@ import com.salesman.dto.ReportDTO;
 import com.salesman.service.DataReaderService;
 import com.salesman.service.DataResultService;
 import com.salesman.service.customer.CustomerService;
-import com.salesman.service.salasman.SalesmanService;
 import com.salesman.service.sale.SalesService;
+import com.salesman.service.salesman.SalesmanService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -75,6 +75,7 @@ public class IntegrationFlowConfig {
                 .transform(Files.toStringTransformer())
                 .transform(processData())
                 .handle(generateMetricHandler())
+                .log(LoggingHandler.Level.INFO, "Finished file read process ")
                 .handle(fileWritingMessageHandler())
                 .get();
     }

@@ -9,7 +9,6 @@ public class SalesService {
     private final SalesData salesData;
     private final SalesDataAnalysis salesDataAnalysis;
 
-
     public SalesService(SalesData salesData, SalesDataAnalysis salesDataAnalysis) {
         this.salesData = salesData;
         this.salesDataAnalysis = salesDataAnalysis;

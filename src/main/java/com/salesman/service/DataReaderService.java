@@ -5,8 +5,8 @@ import com.salesman.model.Customer;
 import com.salesman.model.Sales;
 import com.salesman.model.Salesman;
 import com.salesman.service.customer.CustomerService;
-import com.salesman.service.salasman.SalesmanService;
 import com.salesman.service.sale.SalesService;
+import com.salesman.service.salesman.SalesmanService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -34,7 +34,6 @@ public class DataReaderService {
 
     public ReportDTO processData(String source) {
         List<String> list = Arrays.asList(source.split(System.lineSeparator()));
-
         list.forEach(this::processLine);
 
         return ReportDTO
