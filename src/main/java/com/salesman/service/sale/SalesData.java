@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class SalesData {
 
-    private final static int DEFAULT_ID_BIGGER_SALE = 0;
+    private final static long DEFAULT_ID_BIGGER_SALE = 0;
 
     private final List<Sales> sales;
 
@@ -22,7 +22,7 @@ public class SalesData {
         sales.add(sale);
     }
 
-    public int mostExpensiveSaleId() {
+    public long mostExpensiveSaleId() {
         return sales.stream()
                 .max(Comparator.comparing(Sales::getAmount))
                 .map(Sales::getId)

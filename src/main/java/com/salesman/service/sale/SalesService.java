@@ -24,7 +24,7 @@ public class SalesService {
         salesData.addSale(sales);
     }
 
-    public int mostExpensiveSaleId() {
+    public long mostExpensiveSaleId() {
         return salesData.mostExpensiveSaleId();
     }
 

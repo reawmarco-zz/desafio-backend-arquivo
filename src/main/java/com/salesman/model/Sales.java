@@ -8,24 +8,24 @@ public class Sales implements Serializable {
 
     private static final long serialVersionUID = 8447199076814821763L;
 
-    private Integer id;
+    private long id;
     private List<SalesItem> saleItems;
     private double amount;
     private Salesman salesman;
     private String salesmanName;
 
-    public Sales(Integer id, Salesman salesman, String salesmanName) {
+    public Sales(long id, Salesman salesman, String salesmanName) {
         this.id = id;
         this.salesman = salesman;
         this.salesmanName = salesmanName;
         saleItems = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

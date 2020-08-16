@@ -3,42 +3,37 @@ package com.salesman.service.customer;
 import com.salesman.model.Customer;
 import com.salesman.stub.CustomerStub;
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CustomerServiceTest {
 
-    private CustomerDataAnalysis customerDataAnalysis;
+    private static final String SEPARATOR = "ç";
+    private CustomerService customerService;
 
     @Before
     public void setUp() {
-        customerDataAnalysis = mock(CustomerDataAnalysis.class);
+        CustomerData customerData = new CustomerData();
+        CustomerDataAnalysis customerDataAnalysis = new CustomerDataAnalysis();
+        customerService = new CustomerService(customerData, customerDataAnalysis);
     }
 
     @Test
     public void processLine() {
-        String[] strCustomer = CustomerStub.createOneLine();
+        String[] customerList = CustomerStub.createOneLine();
         Customer customer = new Customer("2345675434544345", "Jose da Silva", "Rural");
 
-        when(customerDataAnalysis.processLine(strCustomer)).thenReturn(customer);
-
-        Customer result = (Customer) customerDataAnalysis.processLine(strCustomer);
+        String[] strCustomer = customerList[0].split(SEPARATOR);
+        Customer result = customerService.processLine(strCustomer);
+        int resultSize = customerService.getTotalCustomers();
 
         assertThat(result, instanceOf(Customer.class));
-        assertEquals(result, customer);
-    }
-
-    @Test
-    public void getTotalCustomers() {
-    }
-
-    @Test
-    public  void clearList() {
-
+        assertEquals(customer.getName(), result.getName());
+        assertEquals(customer.getBusinessArea(), result.getBusinessArea());
+        assertEquals(customer.getCnpj(), result.getCnpj());
+        assertEquals(1, resultSize);
     }
 }
