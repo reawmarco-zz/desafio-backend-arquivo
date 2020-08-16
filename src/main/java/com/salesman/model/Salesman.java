@@ -1,6 +1,10 @@
 package com.salesman.model;
 
-public class Salesman {
+import java.io.Serializable;
+
+public class Salesman  implements Serializable {
+
+    private static final long serialVersionUID = 2564420123675525959L;
 
     private String cpf;
     private String name;

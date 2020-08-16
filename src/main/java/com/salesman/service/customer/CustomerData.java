@@ -1,12 +1,14 @@
-package com.salesman.service.data;
+package com.salesman.service.customer;
 
 import com.salesman.model.Customer;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
+@Component
 public class CustomerData {
 
-    private HashMap<String, Customer> customerHashMap;
+    private final HashMap<String, Customer> customerHashMap;
 
     public CustomerData() {
         customerHashMap = new HashMap<>();

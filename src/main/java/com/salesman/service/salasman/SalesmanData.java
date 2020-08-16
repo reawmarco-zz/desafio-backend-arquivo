@@ -1,12 +1,14 @@
-package com.salesman.service.data;
+package com.salesman.service.salasman;
 
 import com.salesman.model.Salesman;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
+@Component
 public class SalesmanData {
 
-    private HashMap<String, Salesman> salesmanHashMap;
+    private final HashMap<String, Salesman> salesmanHashMap;
 
     public SalesmanData() {
         salesmanHashMap = new HashMap<>();
@@ -20,7 +22,7 @@ public class SalesmanData {
         return salesmanHashMap.get(name);
     }
 
-    public int getTotalSellers() {
+    public int getTotalSalesmen() {
         return salesmanHashMap.size();
     }
 

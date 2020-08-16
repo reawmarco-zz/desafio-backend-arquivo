@@ -1,19 +1,20 @@
-package com.salesman.dto;
+package com.salesman.model;
 
-import com.salesman.model.Salesman;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaleDTO {
+public class Sales  implements Serializable {
+
+    private static final long serialVersionUID = 8447199076814821763L;
 
     private Integer id;
-    private List<SaleItemDTO> saleItems;
+    private List<SalesItem> saleItems;
     private double amount;
     private Salesman salesman;
     private String salesmanName;
 
-    public SaleDTO(Integer id, Salesman salesman, String salesmanName) {
+    public Sales(Integer id, Salesman salesman, String salesmanName) {
         this.id = id;
         this.salesman = salesman;
         this.salesmanName = salesmanName;
@@ -36,11 +37,11 @@ public class SaleDTO {
         this.amount = amount;
     }
 
-    public List<SaleItemDTO> getSaleItems() {
+    public List<SalesItem> getSaleItems() {
         return saleItems;
     }
 
-    public void setSaleItems(List<SaleItemDTO> saleItems) {
+    public void setSaleItems(List<SalesItem> saleItems) {
         this.saleItems = saleItems;
     }
 
@@ -60,7 +61,7 @@ public class SaleDTO {
         this.salesmanName = salesmanName;
     }
 
-    public void addSaleItem(SaleItemDTO item) {
+    public void addSaleItem(SalesItem item) {
         saleItems.add(item);
         amount += item.total();
     }

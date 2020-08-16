@@ -1,7 +1,10 @@
-package com.salesman.service;
+package com.salesman.service.customer;
 
 import com.salesman.model.Customer;
+import com.salesman.service.IProcessLine;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerDataAnalysis implements IProcessLine {
 
     private static final int CNPJ_POSITION = 1;

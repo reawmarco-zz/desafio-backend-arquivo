@@ -1,6 +1,10 @@
 package com.salesman.model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+
+    private static final long serialVersionUID = 7030600147509631091L;
 
     private String cnpj;
     private String name;

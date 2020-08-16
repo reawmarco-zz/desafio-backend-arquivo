@@ -1,12 +1,16 @@
-package com.salesman.dto;
+package com.salesman.model;
 
-public class SaleItemDTO {
+import java.io.Serializable;
+
+public class SalesItem  implements Serializable {
+
+    private static final long serialVersionUID = 2692001629933552503L;
 
     private Long id;
     private double quantity;
     private double price;
 
-    public SaleItemDTO(Long id, double quantity, double price) {
+    public SalesItem(Long id, double quantity, double price) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;

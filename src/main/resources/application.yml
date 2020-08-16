@@ -2,11 +2,14 @@ file:
     basepath: user.home
     in:
       folder: /data/in
-      matcher: '*.dat'
+      type: '*.dat'
     out:
-      regex: (.*)(\.dat)
-      replace: $1.done$2
       folder: /data/out
 separator: ç
 timerate: 10
+
+id:
+  salesman: 001
+  customer: 002
+  sales: 003
 

@@ -1,33 +1,36 @@
 package com.salesman.dto;
 
-public class ReportDTO {
+import java.io.Serializable;
 
-    private long salesmanTotal;
-    private long customerTotal;
-    private String mostExpensiveSaleId;
+public class ReportDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private int salesmanTotal;
+    private int customerTotal;
+    private int mostExpensiveSaleId;
     private String worstSalesmanName;
 
-    public long getSalesmanTotal() {
+    public int getSalesmanTotal() {
         return salesmanTotal;
     }
 
-    public void setSalesmanTotal(long salesmanTotal) {
+    public void setSalesmanTotal(int salesmanTotal) {
         this.salesmanTotal = salesmanTotal;
     }
 
-    public long getCustomerTotal() {
+    public int getCustomerTotal() {
         return customerTotal;
     }
 
-    public void setCustomerTotal(long customerTotal) {
+    public void setCustomerTotal(int customerTotal) {
         this.customerTotal = customerTotal;
     }
 
-    public String getMostExpensiveSaleId() {
+    public int getMostExpensiveSaleId() {
         return mostExpensiveSaleId;
     }
 
-    public void setMostExpensiveSaleId(String mostExpensiveSaleId) {
+    public void setMostExpensiveSaleId(int mostExpensiveSaleId) {
         this.mostExpensiveSaleId = mostExpensiveSaleId;
     }
 
@@ -37,5 +40,56 @@ public class ReportDTO {
 
     public void setWorstSalesmanName(String worstSalesmanName) {
         this.worstSalesmanName = worstSalesmanName;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public String formattedReport() {
+        return "Report Result\n"
+                + "Salesman Count: " + salesmanTotal
+                + "\nCustomer Count: " + customerTotal
+                + "\nMost Expensive Sale Id: " + mostExpensiveSaleId
+                + "\nWorst Salesman Name: " + worstSalesmanName;
+    }
+
+    public static final class Builder {
+        private int salesmanTotal;
+        private int customerTotal;
+        private int mostExpensiveSaleId;
+        private String worstSalesmanName;
+
+        private Builder() {
+        }
+
+        public Builder salesmanTotal(int salesmanTotal) {
+            this.salesmanTotal = salesmanTotal;
+            return this;
+        }
+
+        public Builder customerTotal(int customerTotal) {
+            this.customerTotal = customerTotal;
+            return this;
+        }
+
+        public Builder mostExpensiveSaleId(int mostExpensiveSaleId) {
+            this.mostExpensiveSaleId = mostExpensiveSaleId;
+            return this;
+        }
+
+        public Builder worstSalesmanName(String worstSalesmanName) {
+            this.worstSalesmanName = worstSalesmanName;
+            return this;
+        }
+
+        public ReportDTO build() {
+            ReportDTO reportDTO = new ReportDTO();
+            reportDTO.setSalesmanTotal(salesmanTotal);
+            reportDTO.setCustomerTotal(customerTotal);
+            reportDTO.setMostExpensiveSaleId(mostExpensiveSaleId);
+            reportDTO.setWorstSalesmanName(worstSalesmanName);
+            return reportDTO;
+        }
     }
 }
