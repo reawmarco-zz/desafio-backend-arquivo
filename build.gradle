@@ -14,12 +14,7 @@ repositories {
 }
 
 dependencies {
-		compile 'org.springframework.boot:spring-boot-starter-integration'
-		compile 'org.springframework.integration:spring-integration-file'
-	    compile 'org.springframework.batch:spring-batch-core'
-		testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
-
-test {
-	useJUnitPlatform()
+	compile 'org.springframework.boot:spring-boot-starter-integration'
+	compile 'org.springframework.integration:spring-integration-file'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

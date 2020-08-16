@@ -1,22 +1,26 @@
 package com.salesman.model;
 
-public class SaleItem {
+import java.io.Serializable;
 
-    private long id;
+public class SalesItem  implements Serializable {
+
+    private static final long serialVersionUID = 2692001629933552503L;
+
+    private Long id;
     private double quantity;
     private double price;
 
-    public SaleItem(long id, double quantity, double price) {
+    public SalesItem(Long id, double quantity, double price) {
         this.id = id;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,5 +38,9 @@ public class SaleItem {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public double total() {
+        return (quantity * price);
     }
 }
