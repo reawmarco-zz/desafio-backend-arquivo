@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 public class ReportDTO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2772805375215315611L;
     private int salesmanTotal;
     private int customerTotal;
-    private int mostExpensiveSaleId;
+    private long mostExpensiveSaleId;
     private String worstSalesmanName;
 
     public static Builder builder() {
@@ -30,11 +30,11 @@ public class ReportDTO implements Serializable {
         this.customerTotal = customerTotal;
     }
 
-    public int getMostExpensiveSaleId() {
+    public long getMostExpensiveSaleId() {
         return mostExpensiveSaleId;
     }
 
-    public void setMostExpensiveSaleId(int mostExpensiveSaleId) {
+    public void setMostExpensiveSaleId(long mostExpensiveSaleId) {
         this.mostExpensiveSaleId = mostExpensiveSaleId;
     }
 
@@ -57,7 +57,7 @@ public class ReportDTO implements Serializable {
     public static final class Builder {
         private int salesmanTotal;
         private int customerTotal;
-        private int mostExpensiveSaleId;
+        private long mostExpensiveSaleId;
         private String worstSalesmanName;
 
         private Builder() {
@@ -73,7 +73,7 @@ public class ReportDTO implements Serializable {
             return this;
         }
 
-        public Builder mostExpensiveSaleId(int mostExpensiveSaleId) {
+        public Builder mostExpensiveSaleId(long mostExpensiveSaleId) {
             this.mostExpensiveSaleId = mostExpensiveSaleId;
             return this;
         }
