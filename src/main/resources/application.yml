@@ -1,0 +1,12 @@
+file:
+    basepath: user.home
+    in:
+      folder: /data/in
+      matcher: '*.dat'
+    out:
+      regex: (.*)(\.dat)
+      replace: $1.done$2
+      folder: /data/out
+separator: ç
+timerate: 10
+
