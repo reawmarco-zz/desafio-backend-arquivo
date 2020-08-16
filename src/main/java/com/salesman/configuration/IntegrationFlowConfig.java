@@ -28,7 +28,7 @@ public class IntegrationFlowConfig {
         spec -> spec.poller(Pollers.fixedRate(Long.parseLong("${timerate}"))))
                 .filter(new SimplePatternFileListFilter("${file.in.matcher}"))
                 .transform(Files.toStringTransformer())
-                .split(split-> split.delimiters(System.lineSeparator()))
+               // .split(split-> split.delimiters(System.lineSeparator()))
                 .transform()
                 .get();
 
