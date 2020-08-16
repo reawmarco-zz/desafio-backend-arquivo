@@ -10,6 +10,10 @@ public class ReportDTO implements Serializable {
     private int mostExpensiveSaleId;
     private String worstSalesmanName;
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public int getSalesmanTotal() {
         return salesmanTotal;
     }
@@ -40,10 +44,6 @@ public class ReportDTO implements Serializable {
 
     public void setWorstSalesmanName(String worstSalesmanName) {
         this.worstSalesmanName = worstSalesmanName;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public String formattedReport() {

@@ -1,7 +1,6 @@
 package com.salesman.service.sale;
 
 import com.salesman.model.Sales;
-import com.salesman.model.Salesman;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,11 +22,6 @@ public class SalesData {
         sales.add(sale);
     }
 
-    /**
-     * Buscar o id da maior venda computada no arquivo de entrada
-     *
-     * @return
-     */
     public int mostExpensiveSaleId() {
         return sales.stream()
                 .max(Comparator.comparing(Sales::getAmount))
@@ -35,15 +29,8 @@ public class SalesData {
                 .orElse(DEFAULT_ID_BIGGER_SALE);
     }
 
-    /**
-     * Buscar o nome do vendedor que tem o menor valor total das sales computadas
-     * no arquivo de entrada
-     *
-     * @return
-     */
     public String worstSalesmanName() {
         String nomeVendedor = sales.isEmpty() ? null : sales.get(0).getSalesmanName();
-
         double valorMenorVenda = sales.isEmpty() ? 0.0 : sales.get(0).getAmount();
 
         for (Sales venda : sales) {

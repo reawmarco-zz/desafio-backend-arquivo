@@ -1,4 +1,4 @@
-package com.salesman.service.salasman;
+package com.salesman.service.salesman;
 
 import com.salesman.model.Salesman;
 import org.springframework.stereotype.Component;
@@ -14,8 +14,8 @@ public class SalesmanData {
         salesmanHashMap = new HashMap<>();
     }
 
-    public void addSalesman(Salesman salesman) {
-        salesmanHashMap.put(salesman.getCpf(), salesman);
+    public Salesman addSalesman(Salesman salesman) {
+       return salesmanHashMap.put(salesman.getName(), salesman);
     }
 
     public Salesman getSalesmanByName(String name) {

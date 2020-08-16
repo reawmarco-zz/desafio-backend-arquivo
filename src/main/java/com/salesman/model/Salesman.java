@@ -2,7 +2,7 @@ package com.salesman.model;
 
 import java.io.Serializable;
 
-public class Salesman  implements Serializable {
+public class Salesman implements Serializable {
 
     private static final long serialVersionUID = 2564420123675525959L;
 

@@ -4,7 +4,7 @@ import com.salesman.model.Sales;
 import com.salesman.model.SalesItem;
 import com.salesman.model.Salesman;
 import com.salesman.service.IProcessLine;
-import com.salesman.service.salasman.SalesmanService;
+import com.salesman.service.salesman.SalesmanService;
 import org.springframework.stereotype.Component;
 
 @Component
