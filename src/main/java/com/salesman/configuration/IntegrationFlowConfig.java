@@ -51,7 +51,6 @@ public class IntegrationFlowConfig {
                                  SalesService salesService,
                                  @Value("${timerate}") Long timerate,
                                  @Value("${file.in.type}") String fileType,
-                                 @Value("${file.basepath}") String basePath,
                                  @Value("${file.in.folder}") String folderIn,
                                  @Value("${file.out.folder}") String folderOut) {
 

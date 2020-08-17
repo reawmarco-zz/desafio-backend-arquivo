@@ -44,3 +44,8 @@ O seguinte é um exemplo dos dados que o sistema deve ser capaz de ler.
 
 OBS de Envio:
 Enviar o projeto com a solução em anexo por email ou link para o github.
+
+##### Como utilizar
+git clone https://github.com/reawmarco/desafio-backend-arquivo.git
+cd desafio-backend-arquivo
+./gradlew build bootRun
