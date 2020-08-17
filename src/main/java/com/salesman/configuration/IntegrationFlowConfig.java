@@ -34,6 +34,7 @@ public class IntegrationFlowConfig {
     private static final Boolean WATCH_SERVICE = Boolean.TRUE;
 
     private final Long timerate;
+    private final int maxMessagesPerPoll;
     private final String fileType;
     private final String folderIn;
     private final String folderOut;
@@ -49,7 +50,8 @@ public class IntegrationFlowConfig {
                                  CustomerService customerService,
                                  SalesmanService salesmanService,
                                  SalesService salesService,
-                                 @Value("${timerate}") Long timerate,
+                                 @Value("${poller.timerate}") Long timerate,
+                                 @Value("${poller.maxmessages}") int maxMessagesPerPoll,
                                  @Value("${file.in.type}") String fileType,
                                  @Value("${file.in.folder}") String folderIn,
                                  @Value("${file.out.folder}") String folderOut) {
@@ -60,6 +62,7 @@ public class IntegrationFlowConfig {
         this.salesmanService = salesmanService;
         this.salesService = salesService;
         this.timerate = timerate;
+        this.maxMessagesPerPoll = maxMessagesPerPoll;
         this.fileType = fileType;
         this.folderIn = folderIn;
         this.folderOut = folderOut;
@@ -68,7 +71,8 @@ public class IntegrationFlowConfig {
     @Bean
     IntegrationFlow integrationFlow() {
         return IntegrationFlows
-                .from(createFlowBuiler(), spec -> spec.poller(Pollers.fixedRate(timerate)))
+                .from(createFlowBuiler(),
+                        spec -> spec.poller(Pollers.fixedRate(timerate).maxMessagesPerPoll(maxMessagesPerPoll)))
                 .filter(new SimplePatternFileListFilter(fileType))
                 .log(LoggingHandler.Level.INFO, "Processing file")
                 .transform(Files.toStringTransformer())
