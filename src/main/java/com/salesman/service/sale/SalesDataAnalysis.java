@@ -46,9 +46,9 @@ public class SalesDataAnalysis implements IProcessLine {
         for (String strItem : itens) {
             String[] texto = strItem.split(ITEM_SEPARATOR_VALUES);
             long id = Integer.parseInt(texto[ITEM_ID_POSITION]);
-            double total = Double.parseDouble(texto[QUANTITY_POSITION]);
+            double quantity = Double.parseDouble(texto[QUANTITY_POSITION]);
             double price = Double.parseDouble(texto[PRICE_POSITION]);
-            sales.addSaleItem(new SalesItem(id, total, price));
+            sales.addSaleItem(new SalesItem(id, quantity, price));
         }
         return sales;
     }

@@ -1,7 +1,6 @@
 package com.salesman.service;
 
-import com.salesman.model.Sales;
-import com.salesman.model.Salesman;
+import com.salesman.dto.ReportDTO;
 import com.salesman.service.customer.CustomerData;
 import com.salesman.service.customer.CustomerDataAnalysis;
 import com.salesman.service.customer.CustomerService;
@@ -11,15 +10,14 @@ import com.salesman.service.sale.SalesService;
 import com.salesman.service.salesman.SalesmanData;
 import com.salesman.service.salesman.SalesmanDataAnalysis;
 import com.salesman.service.salesman.SalesmanService;
+import com.salesman.stub.CustomerStub;
+import com.salesman.stub.SalesStub;
 import com.salesman.stub.SalesmanStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNull;
 
 public class DataReaderServiceTest {
 
@@ -38,35 +36,85 @@ public class DataReaderServiceTest {
     private SalesService salesService;
 
     private DataReaderService dataReaderService;
+    private DataResultService dataResultService;
 
     @Before
     public void setUp() {
 
-        salesmanData = mock(SalesmanData.class);
-        salesmanDataAnalysis = mock(SalesmanDataAnalysis.class);
+        salesmanData = new SalesmanData();
+        salesmanDataAnalysis = new SalesmanDataAnalysis();
         salesmanService = new SalesmanService(salesmanData, salesmanDataAnalysis);
 
-        customerData = mock(CustomerData.class);
-        customerDataAnalysis = mock(CustomerDataAnalysis.class);
+        customerData = new CustomerData();
+        customerDataAnalysis = new CustomerDataAnalysis();
         customerService = new CustomerService(customerData, customerDataAnalysis);
 
-        salesData = mock(SalesData.class);
-        salesDataAnalysis = mock(SalesDataAnalysis.class);
+        salesData = new SalesData();
+        salesDataAnalysis = new SalesDataAnalysis(salesmanService);
         salesService = new SalesService(salesData, salesDataAnalysis);
 
         dataReaderService = new DataReaderService(customerService, salesmanService, salesService, SEPARATOR);
+        dataResultService = new DataResultService();
     }
 
     @Test
     public void processData() {
-        String[] strSalesman = SalesmanStub.createOneLine();
+        String[] salesmanList = SalesmanStub.createTwoLines();
+        String[] customerList = CustomerStub.createTwoLines();
+        String[] salesList = SalesStub.createTwoLines();
 
-        Salesman salesman = new Salesman("1234567891234", "Pedro", 40000.99);;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(salesmanList[0])
+                .append("\n")
+                .append(salesmanList[1])
+                .append("\n")
+                .append(customerList[0])
+                .append("\n")
+                .append(customerList[1])
+                .append("\n")
+                .append(salesList[0])
+                .append("\n")
+                .append(salesList[1]);
 
-        when(salesmanDataAnalysis.processLine(strSalesman)).thenReturn(salesman);
+        ReportDTO reportDTO = dataReaderService.processData(stringBuilder.toString());
 
-        Salesman result = (Salesman) salesmanDataAnalysis.processLine(strSalesman);
-        assertThat(result, instanceOf(Salesman.class));
-        assertEquals(result, salesman);
+       String resultReport = dataResultService.saveResult(reportDTO);
+
+        assertEquals("Paulo", reportDTO.getWorstSalesmanName());
+        assertEquals(2, reportDTO.getCustomerTotal());
+        assertEquals(8, reportDTO.getMostExpensiveSaleId());
+        assertEquals(2, reportDTO.getSalesmanTotal());
+        assertEquals(reportDTO.formattedReport(), resultReport);
+    }
+
+    @Test
+    public void clearLists(){
+        String[] salesmanList = SalesmanStub.createTwoLines();
+        String[] customerList = CustomerStub.createTwoLines();
+        String[] salesList = SalesStub.createTwoLines();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(salesmanList[0])
+                .append("\n")
+                .append(salesmanList[1])
+                .append("\n")
+                .append(customerList[0])
+                .append("\n")
+                .append(customerList[1])
+                .append("\n")
+                .append(salesList[0])
+                .append("\n")
+                .append(salesList[1]);
+
+        dataReaderService.processData(stringBuilder.toString());
+
+        salesmanService.clearList();
+        salesService.clearList();
+        customerService.clearList();
+
+        assertNull(salesService.worstSalesmanName());
+        assertEquals(0, salesService.mostExpensiveSaleId());
+        assertEquals(0, customerService.getTotalCustomers());
+        assertEquals(0, salesmanService.getTotalSalesmen());
     }
 }
