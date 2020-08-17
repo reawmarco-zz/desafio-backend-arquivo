@@ -1,5 +1,4 @@
 file:
-  basepath: user.home
   in:
     folder: /data/in
     type: '*.dat'

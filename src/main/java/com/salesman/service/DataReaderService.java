@@ -7,6 +7,9 @@ import com.salesman.model.Salesman;
 import com.salesman.service.customer.CustomerService;
 import com.salesman.service.sale.SalesService;
 import com.salesman.service.salesman.SalesmanService;
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,8 @@ public class DataReaderService {
     private final SalesService salesService;
     private final String separator;
 
+    private Logger logger = LoggerFactory.getLogger(DataReaderService.class);
+
     public DataReaderService(CustomerService customerService,
                              SalesmanService salesmanService,
                              SalesService salesService,
@@ -33,6 +38,7 @@ public class DataReaderService {
     }
 
     public ReportDTO processData(String source) {
+        logger.info("Processing source {}", source);
         List<String> list = Arrays.asList(source.split(System.lineSeparator()));
         list.forEach(this::processLine);
 
@@ -46,6 +52,7 @@ public class DataReaderService {
     }
 
     private void processLine(String line) {
+        logger.info("Processing line {}", line);
         String[] str = line.split(separator);
         String type = str[TYPE_POSITION];
 

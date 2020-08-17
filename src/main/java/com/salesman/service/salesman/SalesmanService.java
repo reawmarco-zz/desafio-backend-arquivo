@@ -1,6 +1,9 @@
 package com.salesman.service.salesman;
 
 import com.salesman.model.Salesman;
+import com.salesman.service.DataReaderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,7 +11,7 @@ public class SalesmanService {
 
     private final SalesmanData salesmanData;
     private final SalesmanDataAnalysis salesmanDataAnalysis;
-
+    private Logger logger = LoggerFactory.getLogger(SalesmanService.class);
     public SalesmanService(SalesmanData salesmanData, SalesmanDataAnalysis salesmanDataAnalysis) {
         this.salesmanData = salesmanData;
         this.salesmanDataAnalysis = salesmanDataAnalysis;
@@ -24,6 +27,7 @@ public class SalesmanService {
     }
 
     public int getTotalSalesmen() {
+        logger.info("Getting Total Salesmen");
         return salesmanData.getTotalSalesmen();
     }
 
@@ -32,6 +36,7 @@ public class SalesmanService {
     }
 
     public void clearList() {
+        logger.info("Clearing list  Salesman");
         salesmanData.clearList();
     }
 }

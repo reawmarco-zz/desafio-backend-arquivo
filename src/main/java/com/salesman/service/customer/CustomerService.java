@@ -1,6 +1,9 @@
 package com.salesman.service.customer;
 
 import com.salesman.model.Customer;
+import com.salesman.service.sale.SalesService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,6 +11,7 @@ public class CustomerService {
 
     private final CustomerData customerData;
     private final CustomerDataAnalysis customerDataAnalysis;
+    private Logger logger = LoggerFactory.getLogger(CustomerService.class);
 
     public CustomerService(CustomerData customerData, CustomerDataAnalysis customerDataAnalysis) {
         this.customerData = customerData;
@@ -29,6 +33,7 @@ public class CustomerService {
     }
 
     public void clearList() {
+        logger.info("Clearing list  Customer");
         customerData.clearList();
     }
 }
