@@ -35,18 +35,27 @@ public class SalesServiceTest {
 
     @Test
     public void processLine() {
-        String[] salesList = SalesStub.createOneLine();
+        String[] salesList = SalesStub.createTwoLines();
         Salesman salesman = new Salesman("1234567891234", "Pedro", 40000.99);
+        Salesman salesman2 = new Salesman("3245678865434", "Paulo", 40000.99);
         Sales sales = new Sales(8, salesman, "Pedro");
 
-        String[] salesmanList = SalesmanStub.createOneLine();
+        String[] salesmanList = SalesmanStub.createTwoLines();
 
         salesmanService.processLine(salesmanList[0].split(SEPARATOR));
+        salesmanService.processLine(salesmanList[1].split(SEPARATOR));
+
         Sales result = salesService.processLine(salesList[0].split(SEPARATOR));
+        salesService.processLine(salesList[1].split(SEPARATOR));
+
+        long resultMostExpansive = salesService.mostExpensiveSaleId();
+        String resultWorsSalesman =  salesService.worstSalesmanName();
 
         assertThat(result, instanceOf(Sales.class));
         assertEquals(sales.getId(), result.getId());
         assertEquals(sales.getSalesmanName(), result.getSalesmanName());
+        assertEquals(8,resultMostExpansive);
+        assertEquals("Paulo",resultWorsSalesman);
 
         assertThat(result, instanceOf(Sales.class));
     }

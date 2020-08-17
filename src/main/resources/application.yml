@@ -6,10 +6,4 @@ file:
     out:
       folder: /data/out
 separator: ç
-timerate: 10
-
-id:
-  salesman: 001
-  customer: 002
-  sales: 003
-
+timerate: 1

@@ -15,11 +15,15 @@ public class SalesmanData {
     }
 
     public Salesman addSalesman(Salesman salesman) {
-       return salesmanHashMap.put(salesman.getName(), salesman);
+       return salesmanHashMap.put(salesman.getCpf(), salesman);
     }
 
     public Salesman getSalesmanByName(String name) {
-        return salesmanHashMap.get(name);
+        return salesmanHashMap.values()
+                .stream()
+                .filter(salesman -> salesman.getName().equals(name))
+                .findFirst()
+                .orElseGet(null);
     }
 
     public int getTotalSalesmen() {
