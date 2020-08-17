@@ -49,13 +49,13 @@ public class SalesServiceTest {
         salesService.processLine(salesList[1].split(SEPARATOR));
 
         long resultMostExpansive = salesService.mostExpensiveSaleId();
-        String resultWorsSalesman =  salesService.worstSalesmanName();
+        String resultWorsSalesman = salesService.worstSalesmanName();
 
         assertThat(result, instanceOf(Sales.class));
         assertEquals(sales.getId(), result.getId());
         assertEquals(sales.getSalesmanName(), result.getSalesmanName());
-        assertEquals(8,resultMostExpansive);
-        assertEquals("Paulo",resultWorsSalesman);
+        assertEquals(8, resultMostExpansive);
+        assertEquals("Paulo", resultWorsSalesman);
 
         assertThat(result, instanceOf(Sales.class));
     }

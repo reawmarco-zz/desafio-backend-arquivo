@@ -16,12 +16,11 @@ public class SalesService {
 
     public Sales processLine(String[] line) {
         Sales sales = (Sales) salesDataAnalysis.processLine(line);
-        addSales(sales);
-        return sales;
+        return addSales(sales);
     }
 
-    public void addSales(Sales sales) {
-        salesData.addSale(sales);
+    public Sales addSales(Sales sales) {
+        return salesData.addSale(sales);
     }
 
     public long mostExpensiveSaleId() {

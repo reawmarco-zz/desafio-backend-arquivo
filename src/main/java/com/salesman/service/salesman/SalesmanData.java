@@ -15,7 +15,7 @@ public class SalesmanData {
     }
 
     public Salesman addSalesman(Salesman salesman) {
-       return salesmanHashMap.put(salesman.getCpf(), salesman);
+        return salesmanHashMap.put(salesman.getCpf(), salesman);
     }
 
     public Salesman getSalesmanByName(String name) {

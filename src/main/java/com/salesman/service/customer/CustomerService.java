@@ -20,8 +20,8 @@ public class CustomerService {
         return customer;
     }
 
-    private void addCustomer(Customer customer) {
-        customerData.addCustomer(customer);
+    private Customer addCustomer(Customer customer) {
+        return customerData.addCustomer(customer);
     }
 
     public int getTotalCustomers() {

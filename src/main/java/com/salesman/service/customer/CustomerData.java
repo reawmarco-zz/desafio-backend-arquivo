@@ -14,8 +14,8 @@ public class CustomerData {
         customerHashMap = new HashMap<>();
     }
 
-    public void addCustomer(Customer customer) {
-        customerHashMap.put(customer.getCnpj(), customer);
+    public Customer addCustomer(Customer customer) {
+        return customerHashMap.put(customer.getCnpj(), customer);
     }
 
     public int getTotalCustomers() {

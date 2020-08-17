@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 public class DataReaderServiceTest {
 
@@ -78,7 +77,7 @@ public class DataReaderServiceTest {
 
         ReportDTO reportDTO = dataReaderService.processData(stringBuilder.toString());
 
-       String resultReport = dataResultService.saveResult(reportDTO);
+        String resultReport = dataResultService.saveResult(reportDTO);
 
         assertEquals("Paulo", reportDTO.getWorstSalesmanName());
         assertEquals(2, reportDTO.getCustomerTotal());
@@ -88,7 +87,7 @@ public class DataReaderServiceTest {
     }
 
     @Test
-    public void clearLists(){
+    public void clearLists() {
         String[] salesmanList = SalesmanStub.createTwoLines();
         String[] customerList = CustomerStub.createTwoLines();
         String[] salesList = SalesStub.createTwoLines();
@@ -112,7 +111,7 @@ public class DataReaderServiceTest {
         salesService.clearList();
         customerService.clearList();
 
-        assertNull(salesService.worstSalesmanName());
+        assertEquals("Not Found", salesService.worstSalesmanName());
         assertEquals(0, salesService.mostExpensiveSaleId());
         assertEquals(0, customerService.getTotalCustomers());
         assertEquals(0, salesmanService.getTotalSalesmen());
