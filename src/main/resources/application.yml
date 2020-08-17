@@ -5,4 +5,8 @@ file:
   out:
     folder: /data/out
 separator: ç
-timerate: 1
+
+poller:
+  timerate: 1000
+  maxmessages: 5
+
