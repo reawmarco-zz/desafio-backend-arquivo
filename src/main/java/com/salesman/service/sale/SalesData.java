@@ -6,11 +6,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class SalesData {
 
     private final static long DEFAULT_ID_BIGGER_SALE = 0;
+    private final static String DEFAULT_WORST_SALESMAN_NAME ="Not Found";
 
     private final List<Sales> sales;
 
@@ -18,8 +20,9 @@ public class SalesData {
         this.sales = new ArrayList<>();
     }
 
-    public void addSale(Sales sale) {
+    public Sales addSale(Sales sale) {
         sales.add(sale);
+        return sale;
     }
 
     public long mostExpensiveSaleId() {
@@ -30,15 +33,20 @@ public class SalesData {
     }
 
     public String worstSalesmanName() {
-        String nomeVendedor = sales.isEmpty() ? null : sales.get(0).getSalesmanName();
-        double valorMenorVenda = sales.isEmpty() ? 0.0 : sales.get(0).getAmount();
+        double firstValue = sales.stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getAmount() != 0)
+                .findFirst()
+                .map(Sales::getAmount)
+                .orElse(0.0);
 
-        for (Sales venda : sales) {
-            if (venda.getAmount() < valorMenorVenda) {
-                nomeVendedor = venda.getSalesmanName();
-            }
-        }
-        return nomeVendedor;
+        return sales.stream()
+                .filter(Objects::nonNull)
+                .filter(s -> s.getAmount() != 0 && s.getSalesmanName() != null)
+                .filter(s -> s.getAmount() < firstValue)
+                .findFirst()
+                .map(Sales::getSalesmanName)
+                .orElse(DEFAULT_WORST_SALESMAN_NAME);
     }
 
     public void clearList() {

@@ -1,6 +1,7 @@
 package com.salesman.service.customer;
 
 import com.salesman.model.Customer;
+import com.salesman.model.Sales;
 import com.salesman.stub.CustomerStub;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class CustomerServiceTest {
         Customer customer = new Customer("2345675434544345", "Jose da Silva", "Rural");
 
         String[] strCustomer = customerList[0].split(SEPARATOR);
-        Customer result = customerService.processLine(strCustomer);
+        Customer result = (Customer)  customerService.processLine(strCustomer);
         int resultSize = customerService.getTotalCustomers();
 
         assertThat(result, instanceOf(Customer.class));

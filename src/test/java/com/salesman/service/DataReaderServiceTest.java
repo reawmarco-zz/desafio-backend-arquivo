@@ -112,7 +112,7 @@ public class DataReaderServiceTest {
         salesService.clearList();
         customerService.clearList();
 
-        assertNull(salesService.worstSalesmanName());
+        assertEquals("Not Found",salesService.worstSalesmanName());
         assertEquals(0, salesService.mostExpensiveSaleId());
         assertEquals(0, customerService.getTotalCustomers());
         assertEquals(0, salesmanService.getTotalSalesmen());
