@@ -23,7 +23,7 @@ public class SalesmanDataAnalysisTest {
     @Test
     public void processLine() {
         String[] strSalesman = SalesmanStub.createOneLine();
-        Salesman salesman = new Salesman("1234567891234", "Pedro", 40000.99);;
+        Salesman salesman = new Salesman("1234567891234", "Pedro", 40000.99);
 
         when(salesmanDataAnalysis.processLine(strSalesman)).thenReturn(salesman);
 

@@ -12,7 +12,7 @@ import java.util.Objects;
 public class SalesData {
 
     private final static long DEFAULT_ID_BIGGER_SALE = 0;
-    private final static String DEFAULT_WORST_SALESMAN_NAME ="Not Found";
+    private final static String DEFAULT_WORST_SALESMAN_NAME = "Not Found";
 
     private final List<Sales> sales;
 

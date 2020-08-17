@@ -1,9 +1,9 @@
 file:
-    basepath: user.home
-    in:
-      folder: /data/in
-      type: '*.dat'
-    out:
-      folder: /data/out
+  basepath: user.home
+  in:
+    folder: /data/in
+    type: '*.dat'
+  out:
+    folder: /data/out
 separator: ç
 timerate: 1
